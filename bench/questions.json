@@ -1,0 +1,92 @@
+{
+  "questions": [
+    {
+      "id": "read",
+      "do": "read",
+      "params": {
+        "url": "bench/fixture/handbook.html"
+      },
+      "expect": [
+        "The Watch Handbook \\| Ankh-Morpork City Watch",
+        "Standing orders for officers",
+        "\"text\": \"Patrols\"",
+        "# The Watch Handbook\\\\n",
+        "\\*\\*Commander Vimes\\*\\*",
+        "\\| Sergeant \\| 20 \\| yes \\|"
+      ]
+    },
+    {
+      "id": "read-drops-chrome",
+      "do": "read",
+      "params": {
+        "url": "bench/fixture/handbook.html"
+      },
+      "expect": [
+        "^(?![\\s\\S]*(Dibbler|Goatberger|Nobby owes|GNU Terry|font-family|Rosters))[\\s\\S]*Complaints about an officer"
+      ]
+    },
+    {
+      "id": "section",
+      "do": "read",
+      "params": {
+        "url": "bench/fixture/handbook.html",
+        "section": "ringing the bell"
+      },
+      "expect": [
+        "\"trail\": \"The Watch Handbook > Patrols > Ringing the bell\"",
+        "```sh\\\\nwatch bell --post \\\\\"Cable Street\\\\\" --times 3",
+        "three times for a dragon",
+        "^(?![\\s\\S]*copy)"
+      ]
+    },
+    {
+      "id": "find",
+      "do": "find",
+      "params": {
+        "url": "bench/fixture/handbook.html",
+        "words": "Shades midnight"
+      },
+      "expect": [
+        "\"under\": \"The Watch Handbook > Patrols\"",
+        "Nobody patrols the Shades alone"
+      ]
+    },
+    {
+      "id": "find-entities",
+      "do": "find",
+      "params": {
+        "url": "bench/fixture/handbook.html",
+        "words": "\"boots allowance\" forfeits"
+      },
+      "expect": [
+        "forfeits the \\\\\"boots allowance\\\\\" & a week's pay",
+        "\"under\": \"The Watch Handbook > Pay\""
+      ]
+    },
+    {
+      "id": "outline",
+      "do": "outline",
+      "params": {
+        "url": "bench/fixture/handbook.html"
+      },
+      "expect": [
+        "\"text\": \"The Watch Handbook\"",
+        "\"text\": \"Ringing the bell\"",
+        "\"level\": 3",
+        "\"text\": \"Complaints\""
+      ]
+    },
+    {
+      "id": "links",
+      "do": "links",
+      "params": {
+        "url": "bench/fixture/handbook.html",
+        "match": "paymaster"
+      },
+      "expect": [
+        "\"total\": 1",
+        "https://example.com/watch/paymaster"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+id = "temet.web"
+name = "web"
+version = "0.1.0"
+min_ask_kit = "0.3.0"
+says = "a web page or a documentation site, read for you: what a URL says about something, the section of a docs page that answers a question, which page of a site covers a topic, what a library's online documentation or changelog says, a page's links; from the page itself, with the address and heading it came from"
+keywords = ["https?://\\S+", "urls?", "web ?pages?", "websites?", "docs? (page|site)", "documentation", "online docs", "the \\S+ docs", "docs (say|cover|mention)", "look ?up", "llms\\.txt", "release notes", "blog post", "article", "fetch"]
+route_hint = "what a web page or an online documentation site says is web; whether a URL answers, its status, DNS or certificate is net; Claude Code's own docs are claude-code-docs; an installed package's own files are deps; this repository's docs folder is code"
+patterns = ['^\s*https?://\S+\s*$']
+cite = "the page's address and the heading the text sits under, with the line number in the converted page"
+instructions = "instructions.md"
+
+[[settings]]
+key = "WORKDIR"
+about = "the folder a saved .html or .md file is looked for in; by default the folder the agent runs in"
+detect = ["node", "-e", "process.stdout.write(process.cwd())"]
+
+[[settings]]
+key = "WEB_ALLOW_PRIVATE"
+about = "set to 1 to let this kit read addresses on this machine and private networks (off by default: a page's text could make it read an internal address)"
+default = ""
+
+[[sources]]
+kind = "module"
+name = "web"
+module = "web.mjs"
+api = "api.d.ts"
