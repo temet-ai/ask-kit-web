@@ -5,7 +5,7 @@ min_ask_kit = "0.3.0"
 says = "a web page or a documentation site, read for you: what a URL says about something, the section of a docs page that answers a question, which page of a site covers a topic, what a library's online documentation or changelog says, a page's links; from the page itself, with the address and heading it came from"
 keywords = ["https?://\\S+", "urls?", "web ?pages?", "websites?", "docs? (page|site)", "documentation", "online docs", "the \\S+ docs", "docs (say|cover|mention)", "look ?up", "llms\\.txt", "release notes", "blog post", "article", "fetch"]
 route_hint = "what a web page or an online documentation site says is web; whether a URL answers, its status, DNS or certificate is net; Claude Code's own docs are claude-code-docs; an installed package's own files are deps; this repository's docs folder is code"
-patterns = ['^\s*https?://\S+\s*$']
+patterns = ['^\s*https?://\S+\s*$', '\bwhat do(es)? (the )?[\w.-]+ (docs?|documentation)( pages?| site)? say\b']
 cite = "the page's address and the heading the text sits under, with the line number in the converted page"
 instructions = "instructions.md"
 
