@@ -15,15 +15,14 @@ export default async function ({ web }, { site, words, pages = 3, max = 3 } = {}
     const own = await web.find(site, words, { max: Number(max) }).catch((e) => ({ error: e.message }));
     return { site: listed.site, from: listed.from, considered: 0, read: own.error ? [] : [{ title: own.title, url: own.url, matches: own.matches, passages: own.passages }], notRead: [], verdict: own.error ? `no page list for this site and the address could not be read: ${own.error}` : `the site lists no page for these words; looked in the address itself: ${own.matches} matching lines` };
   }
-  const read = [];
-  for (const pg of listed.pages.slice(0, n)) {
+  const read = await Promise.all(listed.pages.slice(0, n).map(async (pg) => {
     try {
       const f = await web.find(pg.url, words, { max: Number(max), clip: 700 });
-      read.push({ title: pg.title ?? f.title, url: f.url, matches: f.matches, best: f.best, passages: f.passages });
+      return { title: pg.title ?? f.title, url: f.url, matches: f.matches, best: f.best, passages: f.passages };
     } catch (e) {
-      read.push({ title: pg.title, url: pg.url, matches: 0, passages: [], error: e.message.slice(0, 200) });
+      return { title: pg.title, url: pg.url, matches: 0, passages: [], error: e.message.slice(0, 200) };
     }
-  }
+  }));
   read.sort((a, b) => (b.best ?? 0) - (a.best ?? 0));
   const hit = read.filter((r) => r.matches);
   return {
