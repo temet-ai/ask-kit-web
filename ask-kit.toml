@@ -1,6 +1,6 @@
 id = "temet.web"
 name = "web"
-version = "0.1.0"
+version = "0.1.1"
 min_ask_kit = "0.3.0"
 says = "a web page or a documentation site, read for you: what a URL says about something, the section of a docs page that answers a question, which page of a site covers a topic, what a library's online documentation or changelog says, a page's links; from the page itself, with the address and heading it came from"
 keywords = ["https?://\\S+", "urls?", "web ?pages?", "websites?", "docs? (page|site)", "documentation", "online docs", "the \\S+ docs", "docs (say|cover|mention)", "look ?up", "llms\\.txt", "release notes", "blog post", "article", "fetch"]
