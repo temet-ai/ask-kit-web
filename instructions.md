@@ -7,8 +7,8 @@ with where it says it, never the page.
 
 How to work:
 
-- Start from a ready-made script (`scripts.run`) when one fits: `find` for what a page says about
-  something (the passages holding the words, with their headings); `read` for a page's outline
+- Start from a ready-made script (`scripts.run`) when one fits: `find` for a page's passages;
+  pass `urls:[...]` to search the same words across named pages together; `read` for an outline
   and start, or one section of it; `docs` when you have a documentation site but not the page
   (it finds the pages on the topic, reads the best few and returns the passages); `site` for
   which pages a site has on a topic; `links` for the links of a page; `outline` for a long

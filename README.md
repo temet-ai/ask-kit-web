@@ -67,15 +67,16 @@ Query values named like a token, key or signature are not echoed back.
 7/7, all answered with no model. The site and docs scripts need the network and are not in the
 bench; they were run by hand against nodejs.org and code.claude.com through a proxy.
 
-No model run has been made yet: the bench has no questions from real sessions, so there is no
-score for an investigator model.
+The bench has no scored investigator-model run. `node test/find.mjs` checks single-page and
+batch searches offline, including a failed page and the batch limit.
 
 ## What is in it
 
 `http.mjs` is the GET client (redirects, timeout, size cap, proxy tunnel, the private-address
 check), `html.mjs` the HTML to Markdown converter, and `web.mjs` the `web` global over them. Its
 scripts are `read` (a page's outline and start, or one section), `find` (the passages that hold
-some words), `docs` (a documentation site and some words: the best pages and their passages),
+some words; `urls:[...]` compares up to eight named pages in one call and reports failed pages),
+`docs` (a documentation site and some words: the best pages and their passages),
 `site` (the pages a site lists, ranked by words), `links` and `outline`.
 [RECIPE.md](RECIPE.md) says what it reads and runs, and how to rebuild it.
 
